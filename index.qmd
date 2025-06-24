@@ -1,0 +1,164 @@
+---
+title: "Distribuições Amostrais"
+author: "Guilherme Biz"
+format: 
+  revealjs:
+    css: styles.css
+editor: visual
+footer: "<gbiz@uel.br>" 
+code-fold: true
+---
+
+## Objetivo da Aula
+
+<br>
+
+-   Compreender o conceito de **distribuição amostral**
+-   Entender a importância na **inferência estatística**
+-   Explorar o **Teorema Central do Limite**
+-   Realizar simulações no R
+
+------------------------------------------------------------------------
+
+## O que é uma Distribuição Amostral?
+
+<br>
+
+<br>
+
+A distribuição amostral é a distribuição de uma estatística (como a média) calculada a partir de todas as amostras possíveis de mesmo tamanho extraídas de uma população.
+
+------------------------------------------------------------------------
+
+## Exemplo Conceitual
+
+População: {2, 4, 6, 8}\
+Amostras de tamanho 2 (sem reposição):
+
+| Amostra | Média |
+|---------|-------|
+| (2,4)   | 3     |
+| (2,6)   | 4     |
+| (2,8)   | 5     |
+| (4,6)   | 5     |
+| (4,8)   | 6     |
+| (6,8)   | 7     |
+
+<br>
+
+Distribuição amostral da média: {3, 4, 5, 5, 6, 7}
+
+------------------------------------------------------------------------
+
+## Por que é importante?
+
+<br>
+
+-   É a **base da inferência estatística**
+-   Permite **testes de hipóteses**
+-   Suporte para **intervalos de confiança**
+-   Demonstra o **Teorema Central do Limite**
+
+------------------------------------------------------------------------
+
+## Simulação no R
+
+```{r echo=TRUE, eval=TRUE}
+set.seed(123) 
+populacao <- rnorm(10000, mean = 50, sd = 10) 
+n <- 30
+repeticoes <- 1000 
+medias <- replicate(repeticoes, mean(sample(populacao, n)))
+
+hist(medias, breaks = 30, col = "lightblue", main = "Distribuição Amostral das Médias",ylab="Frequencia", xlab="Médias") 
+abline(v = mean(medias), col = "red", lwd = 2)
+```
+---
+
+### Distribuição amostral da média para população normal
+
+<br>
+
+- Sabe-se que se a população sobre a qual desejamos selecionar uma
+  amostra aleatória simples $(X_1, ..., X_n)$, tem distribuição normal
+  com média $\mu$ e variância $\sigma^2$,
+  $$X\sim N\left(\mu, \sigma^2\right),$$
+
+<br>
+
+- Então, a distribuição amostral das médias também será normal com média
+  $\mu$ e variância $\frac{\sigma^2}{n}$.
+  $$\bar{X}\sim N\left(\mu, \frac{\sigma^2}{n}\right)$$
+---
+
+
+### Dist. amostral da média para qualquer distribuição
+
+<br>
+
+Pelo teorema central do limite, se a população da qual desejamos
+  selecionar uma amostra aleatória simples $(X_1,...,X_n)$, a variável X
+  tem uma distribuição qualquer com média $\mu$ e variância $\sigma^2$,
+  então a distribuição amostral das médias será aproximadamente normal
+  com média $\mu$ e variância $\frac{\sigma^2}{n}$, para $n$
+  suficientemente grande ($n>30$).
+  
+  <br>
+
+$$\bar{X}\sim N\left(\mu, \frac{\sigma^2}{n}\right),\ \ \ \mbox{para}\ \ \ n>30$$
+---
+
+### Exemplo
+
+<br>
+
+**Exemplo 1**: Suponha que a variável peso dos 17000 alunos da UEL, seja
+normalmente distribuído com média de 60,5 kg e desvio padrão 12 kg.
+
+<br>
+
+**1.**  Qual será a média e o desvio padrão da distribuição amostral da
+    média, na hipótese de se utilizarem amostras de tamanho n=36, sem
+    reposição?
+
+**2.**  Qual é a probabilidade da média de uma amostra de tamanho n=36 se
+    encontrar entre 58 e 62 kg?
+
+**3.**  E abaixo de 55 kg?
+
+**4.**  E acima de 65 kg?
+---
+
+
+
+### Distribuição amostral da proporção
+
+- Para determinadas condições de $n$ e de $\pi$, a distribuição binomial
+  pode ser aproximada por uma distribuição normal com parâmetros
+  $$\mu=n\pi \ \ \ \ \ \mbox{e} \ \ \ \ \sigma^2=n\pi(1-\pi)$$
+
+- Portanto a distribuição amostral das proporções poderá ser aproximada
+  por uma distribuição normal com parâmetros
+  $$\mu=\pi  \ \ \ \ \ \mbox{e} \ \ \ \ \sigma^2=\frac{\pi(1-\pi)}{n}$$
+
+- Notação: $p\sim N\left(\pi,\frac{\pi(1-\pi)}{n}\right)$
+---
+
+### Exemplo
+
+<br>
+
+**Exemplo 2**: Sabe-se que num processo de industrialização de pêssegos em
+latas, a probabilidade de apresentar peso drenado fora dos padrões é
+0,05. Qual a probabilidade de, em uma amostra de 500 latas,
+apresentarem-se fora dos padrões:
+
+<br>
+
+**1.**  6% ou mais das latas?
+
+**2.**  4% ou menos das latas?
+---
+
+
+
