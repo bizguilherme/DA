@@ -70,7 +70,7 @@ n <- 30
 repeticoes <- 1000 
 medias <- replicate(repeticoes, mean(sample(populacao, n)))
 
-hist(medias, breaks = 30, col = "lightblue", main = "Distribuição Amostral das Médias",ylab="Frequencia", xlab="Médias") 
+hist(medias, breaks = 30, col = "green4", main = "Distribuição Amostral das Médias",ylab="Frequencia", xlab="Médias") 
 abline(v = mean(medias), col = "red", lwd = 2)
 ```
 ---
@@ -123,10 +123,21 @@ normalmente distribuído com média de 60,5 kg e desvio padrão 12 kg.
 
 **2.**  Qual é a probabilidade da média de uma amostra de tamanho n=36 se
     encontrar entre 58 e 62 kg?
+```{r echo=T,eval=F}
+pnorm(62,60.5,2)-pnorm(58,60.5,2)
+BSDA::normarea(58,62,60.5,2)
+```
 
 **3.**  E abaixo de 55 kg?
-
+```{r echo=T,eval=F}
+pnorm(55,60.5,2)
+BSDA::normarea(-Inf,55,60.5,2)
+```
 **4.**  E acima de 65 kg?
+```{r echo=T,eval=F}
+pnorm(65,60.5,2,lower.tail = F)
+BSDA::normarea(65,Inf,m = 60.5,sig = 2)
+```
 ---
 
 
@@ -156,9 +167,13 @@ apresentarem-se fora dos padrões:
 <br>
 
 **1.**  6% ou mais das latas?
-
+```{r echo=T,eval=F}
+pnorm(0.06,0.05,0.0097,lower.tail = F)
+```
 **2.**  4% ou menos das latas?
----
+```{r echo=T,eval=F}
+pnorm(0.04,0.05,0.0097)
+```
 
 
 

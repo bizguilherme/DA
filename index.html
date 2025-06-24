@@ -282,7 +282,7 @@ Amostras de tamanho 2 (sem reposição):</p>
 <span id="cb1-4"><a href=""></a>repeticoes <span class="ot">&lt;-</span> <span class="dv">1000</span> </span>
 <span id="cb1-5"><a href=""></a>medias <span class="ot">&lt;-</span> <span class="fu">replicate</span>(repeticoes, <span class="fu">mean</span>(<span class="fu">sample</span>(populacao, n)))</span>
 <span id="cb1-6"><a href=""></a></span>
-<span id="cb1-7"><a href=""></a><span class="fu">hist</span>(medias, <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">"lightblue"</span>, <span class="at">main =</span> <span class="st">"Distribuição Amostral das Médias"</span>,<span class="at">ylab=</span><span class="st">"Frequencia"</span>, <span class="at">xlab=</span><span class="st">"Médias"</span>) </span>
+<span id="cb1-7"><a href=""></a><span class="fu">hist</span>(medias, <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">"green4"</span>, <span class="at">main =</span> <span class="st">"Distribuição Amostral das Médias"</span>,<span class="at">ylab=</span><span class="st">"Frequencia"</span>, <span class="at">xlab=</span><span class="st">"Médias"</span>) </span>
 <span id="cb1-8"><a href=""></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(medias), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
@@ -316,8 +316,29 @@ Amostras de tamanho 2 (sem reposição):</p>
 <p><br></p>
 <p><strong>1.</strong> Qual será a média e o desvio padrão da distribuição amostral da média, na hipótese de se utilizarem amostras de tamanho n=36, sem reposição?</p>
 <p><strong>2.</strong> Qual é a probabilidade da média de uma amostra de tamanho n=36 se encontrar entre 58 e 62 kg?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">62</span>,<span class="fl">60.5</span>,<span class="dv">2</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">58</span>,<span class="fl">60.5</span>,<span class="dv">2</span>)</span>
+<span id="cb2-2"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="dv">58</span>,<span class="dv">62</span>,<span class="fl">60.5</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p><strong>3.</strong> E abaixo de 55 kg?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">55</span>,<span class="fl">60.5</span>,<span class="dv">2</span>)</span>
+<span id="cb3-2"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="sc">-</span><span class="cn">Inf</span>,<span class="dv">55</span>,<span class="fl">60.5</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p><strong>4.</strong> E acima de 65 kg?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">pnorm</span>(<span class="dv">65</span>,<span class="fl">60.5</span>,<span class="dv">2</span>,<span class="at">lower.tail =</span> F)</span>
+<span id="cb4-2"><a href=""></a>BSDA<span class="sc">::</span><span class="fu">normarea</span>(<span class="dv">65</span>,<span class="cn">Inf</span>,<span class="at">m =</span> <span class="fl">60.5</span>,<span class="at">sig =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section class="slide level2">
 
@@ -335,10 +356,19 @@ Amostras de tamanho 2 (sem reposição):</p>
 <p><strong>Exemplo 2</strong>: Sabe-se que num processo de industrialização de pêssegos em latas, a probabilidade de apresentar peso drenado fora dos padrões é 0,05. Qual a probabilidade de, em uma amostra de 500 latas, apresentarem-se fora dos padrões:</p>
 <p><br></p>
 <p><strong>1.</strong> 6% ou mais das latas?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">0.06</span>,<span class="fl">0.05</span>,<span class="fl">0.0097</span>,<span class="at">lower.tail =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p><strong>2.</strong> 4% ou menos das latas?</p>
-</section>
-<section class="slide level2">
-
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">pnorm</span>(<span class="fl">0.04</span>,<span class="fl">0.05</span>,<span class="fl">0.0097</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 </section>
     </div>

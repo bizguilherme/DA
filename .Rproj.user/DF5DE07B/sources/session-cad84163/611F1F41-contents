@@ -1,0 +1,22 @@
+rm(list=ls())
+
+
+### Exemplo 1
+# 1
+pnorm(0.06,0.05,0.0097,lower.tail = F)
+
+# 2
+pnorm(0.04,0.05,0.0097)
+
+### Exemplo 2
+#1
+#Média = 60.5.  Desvio = 2
+
+#2
+pnorm(62,60.5,2)-pnorm(58,60.5,2)
+
+# 3
+pnorm(55,60.5,2)
+
+# 4
+pnorm(65,60.5,2,lower.tail = F)
